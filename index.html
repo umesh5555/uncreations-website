@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UN Creations — Precision 3D Printing Studio · UK</title>
+<meta name="description" content="UN Creations — a UK 3D printing studio for serious products. Personalised gifts, LED décor, figurines and B2B branded merchandise & prototypes. Designed, prototyped and manufactured in the UK." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ivory:#F7F5F2;--ivory2:#EFEDE7;--ivory3:#E8E5DE;
+  --graphite:#23262D;--graphite2:#2C3038;--graphite-d:#16181d;
+  --ink:#111827;--stone:#6B7280;--stone2:#8b8f98;
+  --copper:#B87333;--copper-d:#9B5F2B;--copper-soft:#cf9156;--copper-glow:#e7a050;
+  --sage:#7A8B78;
+  --line:rgba(17,24,39,.12);--line-d:rgba(247,245,242,.14);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --disp:'Fraunces',Georgia,serif;--sans:'Inter',-apple-system,Helvetica,Arial,sans-serif;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-font-smoothing:antialiased;}
+body{background:var(--ivory);color:var(--ink);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
+a{color:inherit;text-decoration:none;}img{display:block;max-width:100%;}
+::selection{background:var(--copper);color:#fff;}
+h1,h2,h3,.disp{font-family:var(--disp);font-weight:400;}
+.cu{color:var(--copper);}
+.disp em,.serif-em{font-style:italic;color:var(--copper);}
+
+.bg{position:fixed;inset:0;z-index:-2;background:
+  radial-gradient(80% 60% at 80% -5%,rgba(184,115,51,.07),transparent 60%),
+  radial-gradient(70% 55% at 0% 8%,rgba(122,139,120,.06),transparent 55%),
+  linear-gradient(180deg,#FBFAF8 0%,var(--ivory) 40%,var(--ivory2) 100%);}
+.grain{position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)' opacity='.02'/%3E%3C/svg%3E");}
+
+.eyebrow{font-size:11px;letter-spacing:.32em;text-transform:uppercase;color:var(--copper);font-weight:600;font-family:var(--sans);}
+
+/* ── NAV (adapts: light over dark hero → dark over ivory) ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:600;display:flex;align-items:center;justify-content:space-between;padding:22px 44px;transition:all .5s var(--ease);}
+nav.solid{padding:13px 44px;background:rgba(247,245,242,.85);backdrop-filter:blur(16px) saturate(1.2);border-bottom:1px solid var(--line);}
+.brand{font-family:var(--disp);font-weight:600;font-size:20px;letter-spacing:-.01em;display:flex;align-items:center;gap:10px;color:var(--ivory);transition:color .4s;}
+nav.solid .brand{color:var(--ink);}
+.brand .dot{width:8px;height:8px;border-radius:50%;background:var(--copper);box-shadow:0 0 12px var(--copper);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.nav-links{display:flex;gap:30px;margin-right:16px;}
+.nav-links a{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:rgba(247,245,242,.72);font-weight:500;transition:color .3s;}
+nav.solid .nav-links a{color:var(--stone);}
+.nav-links a:hover{color:var(--copper-soft);}
+nav.solid .nav-links a:hover{color:var(--ink);}
+.burger{display:none;background:none;border:none;color:var(--ivory);font-size:22px;cursor:pointer;}
+nav.solid .burger{color:var(--ink);}
+
+.btn{font-family:var(--sans);font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-weight:600;padding:14px 28px;border-radius:8px;cursor:pointer;transition:all .35s var(--ease);display:inline-flex;align-items:center;gap:8px;border:1.5px solid transparent;}
+.btn-primary{background:var(--copper);color:#fff;}
+.btn-primary:hover{background:var(--copper-d);transform:translateY(-2px);box-shadow:0 10px 26px rgba(184,115,51,.3);}
+.btn-secondary{background:transparent;border-color:var(--graphite);color:var(--graphite);}
+.btn-secondary:hover{background:var(--graphite);color:var(--ivory);transform:translateY(-2px);}
+.btn-sm{padding:10px 18px;font-size:11px;}
+nav .btn-secondary{border-color:rgba(247,245,242,.4);color:var(--ivory);}
+nav.solid .btn-secondary{border-color:var(--line);color:var(--ink);}
+nav .btn-secondary:hover{background:var(--ivory);color:var(--graphite);border-color:var(--ivory);}
+
+/* ── CINEMATIC 3D HERO ── */
+#hero{position:relative;height:440vh;}
+.stage3d{position:relative;height:100vh;width:100%;overflow:hidden;
+  background:
+    radial-gradient(75% 80% at 72% 26%,rgba(231,160,80,.30),transparent 58%),
+    radial-gradient(60% 70% at 18% 88%,rgba(184,115,51,.16),transparent 60%),
+    linear-gradient(180deg,#1b160f 0%,#14151a 55%,var(--graphite) 100%);}
+#scene{position:absolute;inset:0;width:100%;height:100%;display:block;z-index:1;}
+.hero-vig{position:absolute;inset:0;z-index:2;pointer-events:none;box-shadow:inset 0 -120px 160px -40px rgba(20,21,26,.9),inset 0 80px 120px -40px rgba(20,16,12,.5);}
+.hero-overlay{position:absolute;inset:0;z-index:3;pointer-events:none;}
+.chap{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);text-align:center;padding:0 8vw;opacity:0;}
+.chap .eyebrow{margin-bottom:18px;display:block;color:var(--copper-soft);}
+.chap h1{font-size:clamp(40px,7vw,100px);line-height:1.0;letter-spacing:-.02em;color:var(--ivory);font-weight:500;text-shadow:0 4px 60px rgba(0,0,0,.4);}
+.chap h2{font-size:clamp(30px,5vw,66px);line-height:1.06;letter-spacing:-.015em;color:var(--ivory);font-weight:500;text-shadow:0 4px 60px rgba(0,0,0,.4);}
+.chap h1 em,.chap h2 em{font-style:italic;color:var(--copper-soft);}
+.chap p{font-size:clamp(15px,1.6vw,19px);color:rgba(247,245,242,.72);max-width:34ch;margin:18px auto 0;}
+.chap.final .ctas{margin-top:32px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap;pointer-events:auto;}
+.chap.final .btn-secondary{border-color:rgba(247,245,242,.45);color:var(--ivory);}
+.chap.final .btn-secondary:hover{background:var(--ivory);color:var(--graphite);}
+.scroll-cue{position:absolute;left:50%;bottom:30px;transform:translateX(-50%);z-index:4;display:flex;flex-direction:column;align-items:center;gap:10px;opacity:0;animation:cueIn 1s 1.4s var(--ease) forwards;}
+.scroll-cue span{font-size:9px;letter-spacing:.36em;text-transform:uppercase;color:rgba(247,245,242,.5);}
+.scroll-cue i{width:1px;height:44px;background:linear-gradient(var(--copper-glow),transparent);animation:cue 2.4s var(--ease) infinite;transform-origin:top;}
+@keyframes cueIn{to{opacity:1;}}
+@keyframes cue{0%{transform:scaleY(0);}45%{transform:scaleY(1);transform-origin:top;}55%{transform:scaleY(1);transform-origin:bottom;}100%{transform:scaleY(0);transform-origin:bottom;}}
+.hud{position:absolute;left:44px;bottom:32px;z-index:4;font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:rgba(247,245,242,.45);}
+.hud b{color:var(--copper-soft);font-weight:600;}
+
+section{position:relative;z-index:1;}
+.wrap{max-width:1280px;margin:0 auto;padding:0 44px;}
+.sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:16px;}
+.sec-head .num{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--copper);}
+.sec-head .label{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--stone);font-weight:500;}
+.sec-title{font-size:clamp(30px,4.4vw,58px);letter-spacing:-.02em;line-height:1.05;margin-bottom:10px;color:var(--ink);font-weight:500;}
+
+.marq{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:15px 0;overflow:hidden;background:var(--ivory2);}
+.marq-track{display:flex;width:max-content;animation:mq 34s linear infinite;}
+.marq-item{font-family:var(--disp);font-weight:500;font-size:14px;letter-spacing:.04em;color:var(--graphite);padding:0 28px;white-space:nowrap;display:flex;align-items:center;gap:28px;}
+.marq-item::after{content:'';width:5px;height:5px;border-radius:50%;background:var(--copper);}
+@keyframes mq{to{transform:translateX(-50%);}}
+
+.reveal{opacity:0;transform:translateY(38px);transition:opacity 1s var(--ease),transform 1s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+.reveal.d1{transition-delay:.08s;}.reveal.d2{transition-delay:.16s;}.reveal.d3{transition-delay:.24s;}
+
+/* ── STICKY "NEXT" DIVIDER (steven-style) ── */
+.divider{position:relative;height:170vh;}
+.div-inner{position:relative;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;overflow:hidden;}
+.div-k{font-size:11px;letter-spacing:.4em;text-transform:uppercase;color:var(--copper);font-weight:600;margin-bottom:14px;}
+.div-title{font-family:var(--disp);font-weight:500;font-size:clamp(44px,9vw,150px);line-height:.96;letter-spacing:-.02em;color:var(--ink);}
+.div-title em{font-style:italic;color:var(--copper);}
+.div-rule{margin-top:26px;height:1px;width:0;background:var(--copper);}
+html:not(.gsap) .divider{height:auto;}
+html:not(.gsap) .div-inner{height:auto;padding:90px 0;}
+
+/* ── STICKY SHOWCASE ── */
+#showcase{position:relative;height:500vh;}
+.show-stage{position:relative;height:100vh;overflow:hidden;display:flex;align-items:center;}
+.show-rail{position:absolute;left:44px;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:14px;}
+.show-rail b{width:9px;height:9px;border-radius:50%;background:var(--line);transition:all .4s var(--ease);}
+.show-rail b.on{background:var(--copper);transform:scale(1.35);}
+.show-head{position:absolute;left:44px;top:96px;z-index:5;}
+.slide{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;max-width:1280px;margin:0 auto;padding:0 44px;left:0;right:0;opacity:0;will-change:opacity,transform;}
+.slide .s-media{position:relative;aspect-ratio:4/3;border-radius:18px;overflow:hidden;border:1px solid var(--line);background:var(--ivory2);box-shadow:0 30px 70px rgba(35,38,45,.12);}
+.slide .s-media .ph{position:absolute;inset:0;}
+.slide .s-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s var(--ease);}
+.slide .s-media img.loaded{opacity:1;}
+.slide .s-num{font-family:var(--disp);font-size:14px;color:var(--copper);font-weight:600;}
+.slide .s-cat{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--stone);margin:16px 0 14px;}
+.slide h3{font-size:clamp(30px,3.6vw,50px);line-height:1.05;letter-spacing:-.02em;color:var(--ink);font-weight:500;margin-bottom:18px;}
+.slide p{color:var(--stone);font-size:16px;max-width:42ch;margin-bottom:26px;}
+.slide .s-foot{display:flex;align-items:center;gap:24px;flex-wrap:wrap;}
+.slide .s-price{font-family:var(--disp);font-size:24px;color:var(--ink);}
+.ph[data-ph]{background:linear-gradient(150deg,var(--ivory3),var(--ivory2));}
+.ph[data-ph="led"]{background:radial-gradient(70% 60% at 50% 42%,rgba(184,115,51,.18),transparent 60%),linear-gradient(150deg,#ECE7DF,#E4DED4);}
+.ph[data-ph="figurine"]{background:radial-gradient(60% 60% at 50% 44%,rgba(122,139,120,.2),transparent 60%),linear-gradient(150deg,#ECE8E1,#E3DDD3);}
+.ph[data-ph="decor"]{background:radial-gradient(60% 60% at 46% 46%,rgba(184,115,51,.14),transparent 60%),linear-gradient(150deg,#EEEAE3,#E5DFD5);}
+.ph[data-ph="prototype"]{background:radial-gradient(60% 60% at 55% 45%,rgba(122,139,120,.18),transparent 60%),linear-gradient(150deg,#EBE7E0,#E3DDD3);}
+html:not(.gsap) #showcase{height:auto;}
+html:not(.gsap) .show-stage{height:auto;display:block;padding:80px 0;}
+html:not(.gsap) .slide{position:relative;opacity:1;padding:60px 44px;}
+html:not(.gsap) .show-rail,html:not(.gsap) .show-head{display:none;}
+
+.interlude{position:relative;padding:clamp(90px,14vh,150px) 0;background:var(--graphite);color:var(--ivory);text-align:center;overflow:hidden;}
+.interlude::before{content:'';position:absolute;inset:0;background:radial-gradient(60% 80% at 50% 0%,rgba(184,115,51,.16),transparent 60%);}
+.interlude .q{position:relative;z-index:2;max-width:980px;margin:0 auto;padding:0 28px;}
+.interlude .q p{font-family:var(--disp);font-weight:400;font-size:clamp(26px,4vw,50px);line-height:1.2;letter-spacing:-.015em;color:var(--ivory);}
+.interlude .q em{font-style:italic;color:var(--copper-soft);}
+
+#services{padding:clamp(70px,9vh,110px) 0 clamp(90px,12vh,140px);}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:50px;}
+.svc{position:relative;border-radius:16px;border:1px solid var(--line);background:#fff;padding:34px 30px;min-height:240px;display:flex;flex-direction:column;cursor:pointer;overflow:hidden;transition:border-color .4s,transform .4s var(--ease),box-shadow .4s;}
+.svc:hover{border-color:var(--copper);transform:translateY(-4px);box-shadow:0 18px 44px rgba(35,38,45,.10);}
+.svc .n{font-family:var(--disp);font-weight:600;font-size:14px;color:var(--copper);}
+.svc h3{font-size:22px;margin:20px 0 12px;line-height:1.14;color:var(--ink);font-weight:500;}
+.svc p{font-size:14px;color:var(--stone);flex:1;}
+.svc .go{margin-top:20px;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone2);font-weight:600;transition:color .4s;}
+.svc:hover .go{color:var(--copper);}
+
+#b2b{padding:clamp(70px,9vh,110px) 0 clamp(90px,12vh,140px);}
+.b2b-card{border-radius:24px;background:var(--graphite);color:var(--ivory);padding:clamp(40px,6vw,72px);display:grid;grid-template-columns:1.1fr .9fr;gap:54px;align-items:center;position:relative;overflow:hidden;}
+.b2b-card::before{content:'';position:absolute;inset:0;background:radial-gradient(70% 90% at 100% 0%,rgba(184,115,51,.2),transparent 55%);}
+.b2b-card>*{position:relative;z-index:2;}
+.b2b-card .sec-title{color:var(--ivory);}
+.b2b-card .label{color:var(--stone2);}.b2b-card .num{color:var(--copper-soft);}
+.b2b-card p{color:rgba(247,245,242,.75);font-size:16px;max-width:46ch;margin:18px 0 30px;}
+.b2b-points{list-style:none;display:grid;gap:14px;}
+.b2b-points li{font-size:14px;color:rgba(247,245,242,.82);padding-left:24px;position:relative;}
+.b2b-points li::before{content:'';position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:2px;background:var(--sage);}
+
+#quote{padding:clamp(70px,9vh,110px) 0 clamp(90px,12vh,140px);}
+.q-form{display:grid;grid-template-columns:1fr 1fr;gap:18px;max-width:920px;margin-top:44px;}
+.q-form .full{grid-column:1/-1;}
+.q-field label{display:block;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--stone);margin-bottom:8px;font-weight:600;}
+.q-field input,.q-field select,.q-field textarea{width:100%;background:#fff;border:1px solid var(--line);color:var(--ink);padding:14px 16px;font-size:15px;font-family:inherit;outline:none;border-radius:9px;transition:border-color .3s,box-shadow .3s;}
+.q-field input:focus,.q-field select:focus,.q-field textarea:focus{border-color:var(--copper);box-shadow:0 0 0 3px rgba(184,115,51,.12);}
+.q-field textarea{min-height:130px;resize:vertical;}
+.q-toggle{display:flex;gap:6px;background:var(--ivory2);border:1px solid var(--line);border-radius:999px;padding:5px;}
+.q-toggle button{flex:1;padding:13px;background:none;border:none;color:var(--stone);font-size:10px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:all .35s;font-family:inherit;border-radius:999px;font-weight:600;}
+.q-toggle button.on{background:var(--copper);color:#fff;}
+.q-check{display:flex;align-items:center;gap:11px;font-size:13px;color:var(--stone);cursor:pointer;}.q-check input{width:auto;accent-color:var(--copper);}
+.q-status{font-size:12px;margin-top:15px;min-height:18px;}.q-status.ok{color:var(--sage);}.q-status.err{color:#b3503f;}
+.biz-only{display:none;}.q-form.is-biz .biz-only{display:block;}
+.q-trust{margin-top:34px;display:flex;gap:30px;flex-wrap:wrap;}
+.q-trust span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--stone);font-weight:500;}.q-trust b{color:var(--copper);}
+
+footer{background:var(--graphite);color:var(--ivory);padding:72px 44px 44px;}
+.foot-grid{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1.5fr 1fr 1fr;gap:46px;}
+.foot-brand .brand{color:var(--ivory);}
+.foot-brand p{color:rgba(247,245,242,.65);font-size:14px;margin-top:16px;max-width:34ch;}
+.foot-col h5{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--stone2);margin-bottom:16px;}
+.foot-col a,.foot-col span{display:block;font-size:14px;color:rgba(247,245,242,.72);margin-bottom:11px;transition:color .3s;}
+.foot-col a:hover{color:var(--copper-soft);}
+.nl-form{display:flex;gap:6px;margin-top:8px;}
+.nl-form input{flex:1;background:rgba(247,245,242,.08);border:1px solid var(--line-d);color:var(--ivory);padding:13px 14px;font-size:13px;outline:none;border-radius:8px;font-family:inherit;}
+.nl-form input::placeholder{color:var(--stone2);}
+.nl-form button{padding:13px 18px;border:none;border-radius:8px;background:var(--copper);color:#fff;font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:inherit;}
+.nl-status{font-size:11px;color:var(--copper-soft);min-height:15px;margin-top:8px;}
+.foot-base{max-width:1280px;margin:50px auto 0;padding-top:24px;border-top:1px solid var(--line-d);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.foot-base span{font-size:11px;color:var(--stone2);}
+
+.overlay{position:fixed;inset:0;z-index:9000;display:none;align-items:center;justify-content:center;background:rgba(35,38,45,.5);backdrop-filter:blur(6px);padding:24px;}
+.overlay.open{display:flex;}
+.modal-box{position:relative;width:min(560px,94vw);background:var(--ivory);border:1px solid var(--line);border-radius:18px;padding:48px 44px;max-height:90vh;overflow:auto;box-shadow:0 40px 90px rgba(35,38,45,.3);}
+.modal-box .x{position:absolute;top:16px;right:18px;background:none;border:none;color:var(--stone);font-size:20px;cursor:pointer;}
+.modal-box h3{font-size:30px;margin:12px 0 10px;color:var(--ink);font-weight:500;}
+.modal-box .m-desc{color:var(--stone);font-size:14px;margin-bottom:24px;}
+.q-submit{padding:15px 40px;border:none;border-radius:8px;background:var(--copper);color:#fff;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .35s;font-family:inherit;}
+.q-submit:hover{background:var(--copper-d);transform:translateY(-2px);}.q-submit:disabled{opacity:.5;}
+#dpop .modal-box{text-align:center;}
+.dpop-code{display:none;margin-top:18px;padding:13px 28px;border:1px dashed var(--copper);border-radius:10px;color:var(--copper);font-size:18px;letter-spacing:.28em;font-weight:600;font-family:var(--disp);}
+
+@media(max-width:1080px){
+  .slide{grid-template-columns:1fr;gap:30px;}
+  .svc-grid{grid-template-columns:repeat(2,1fr);}
+  .b2b-card,.foot-grid{grid-template-columns:1fr;gap:34px;}
+}
+@media(max-width:680px){
+  nav{padding:16px 20px;}.wrap{padding:0 20px;}.hud,.show-rail{display:none;}
+  .nav-links{display:none;}
+  .nav-links.show{display:flex;position:absolute;top:100%;right:20px;flex-direction:column;gap:16px;background:var(--ivory);border:1px solid var(--line);border-radius:14px;padding:20px 24px;margin:0;}
+  nav .nav-links.show a{color:var(--stone);}
+  .burger{display:block;}
+  #hero{height:340vh;}.divider{height:130vh;}
+  .slide{padding:0 20px;}.show-head{left:20px;}
+  .svc-grid,.q-form{grid-template-columns:1fr;}
+  footer{padding:54px 20px 36px;}
+}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="grain"></div>
+
+<nav id="nav">
+  <a href="#hero" class="brand"><span class="dot"></span>UN Creations</a>
+  <div class="nav-right">
+    <div class="nav-links"><a href="#showcase">Shop</a><a href="#services">Studio</a><a href="#b2b">Business</a><a href="#quote">Quote</a></div>
+    <a href="https://shop.uncreations.co.uk" target="_blank" rel="noopener" class="btn btn-secondary btn-sm">Store ↗</a>
+    <a href="#quote" class="btn btn-primary btn-sm">Get a Quote</a>
+    <button class="burger" onclick="document.querySelector('.nav-links').classList.toggle('show')">≡</button>
+  </div>
+</nav>
+
+<!-- ━━ CINEMATIC 3D HERO ━━ -->
+<section id="hero">
+  <div class="stage3d">
+    <canvas id="scene"></canvas>
+    <div class="hero-vig"></div>
+    <div class="hero-overlay">
+      <div class="chap" data-chap="0"><span class="eyebrow">UN Creations · UK Precision 3D Printing</span><h1>It starts with<br><em>a single thread.</em></h1></div>
+      <div class="chap" data-chap="1"><h2>We build it —<br>layer by layer.</h2><p>0.1&nbsp;mm at a time, an idea becomes a real, finished object.</p></div>
+      <div class="chap" data-chap="2"><h2>Engineered<br>to be <em>kept.</em></h2><p>From personalised gifts to production parts — made to last, not to print and forget.</p></div>
+      <div class="chap final" data-chap="3"><span class="eyebrow">Est. 2024 · Manufactured in the UK</span><h1>Serious products.<br><em>Made for you.</em></h1>
+        <div class="ctas"><a href="#showcase" class="btn btn-primary">Explore the Work</a><a href="#quote" class="btn btn-secondary">Start a Project</a></div>
+      </div>
+    </div>
+    <div class="hud">UN·001 — <b>FROM A SINGLE THREAD</b></div>
+    <div class="scroll-cue"><i></i><span>Scroll</span></div>
+  </div>
+</section>
+
+<div class="marq"><div class="marq-track">
+  <span class="marq-item">Precision 3D Printing</span><span class="marq-item">LED Photo Panels</span><span class="marq-item">Personalised Gifts</span><span class="marq-item">B2B Branded Merch</span><span class="marq-item">Rapid Prototyping</span><span class="marq-item">48-Hour Rush</span><span class="marq-item">Made in the UK</span>
+  <span class="marq-item">Precision 3D Printing</span><span class="marq-item">LED Photo Panels</span><span class="marq-item">Personalised Gifts</span><span class="marq-item">B2B Branded Merch</span><span class="marq-item">Rapid Prototyping</span><span class="marq-item">48-Hour Rush</span><span class="marq-item">Made in the UK</span>
+</div></div>
+
+<!-- ━━ DIVIDER ━━ -->
+<section class="divider" data-num="01"><div class="div-inner"><span class="div-k">The Work</span><h2 class="div-title">Things you<br>can <em>own.</em></h2><div class="div-rule"></div></div></section>
+
+<!-- ━━ STICKY SHOWCASE ━━ -->
+<section id="showcase">
+  <div class="show-stage">
+    <div class="show-head sec-head"><span class="num">01</span><span class="label">Selected Work · Shop</span></div>
+    <div class="show-rail"><b class="on"></b><b></b><b></b><b></b></div>
+    <article class="slide" data-slide="0">
+      <div class="s-media"><div class="ph" data-ph="led"></div><img data-src="led.jpg" alt="LED Hexagon Photo Panels" /></div>
+      <div class="s-body"><span class="s-num">01 / 04</span><p class="s-cat">Home Décor · Lighting</p><h3>LED Hexagon<br>Photo Panels</h3><p>Your memories etched into light. Custom hex panels with multi-colour RGB — photo-perfect prints that glow on the wall.</p><div class="s-foot"><span class="s-price">From £79.99</span><a class="btn btn-primary btn-sm" href="https://shop.uncreations.co.uk/products/personalized-led-hexagon-photo-panels" target="_blank" rel="noopener">Buy now →</a></div></div>
+    </article>
+    <article class="slide" data-slide="1">
+      <div class="s-media"><div class="ph" data-ph="figurine"></div><img data-src="figurine.jpg" alt="Custom 3D Figurine" /></div>
+      <div class="s-body"><span class="s-num">02 / 04</span><p class="s-cat">Art · Collectibles</p><h3>Custom 3D<br>Figurine</h3><p>Send the idea — we bring it to life. Pets, portraits, fantasy characters, brand mascots. Finished in PLA or Resin Ultra.</p><div class="s-foot"><span class="s-price">From £35.00</span><a class="btn btn-primary btn-sm" href="https://shop.uncreations.co.uk/products/custom-3d-printed-figurine" target="_blank" rel="noopener">Buy now →</a></div></div>
+    </article>
+    <article class="slide" data-slide="2">
+      <div class="s-media"><div class="ph" data-ph="decor"></div><img data-src="decor.jpg" alt="Bespoke Home Décor" /></div>
+      <div class="s-body"><span class="s-num">03 / 04</span><p class="s-cat">Home Décor · Art</p><h3>Bespoke<br>Home Décor</h3><p>Geometric vases, wall art, custom lampshades and organisers — designed precisely the way you imagine them.</p><div class="s-foot"><span class="s-price">From £25.00</span><a class="btn btn-primary btn-sm" href="https://shop.uncreations.co.uk/products/custom-home-decor-piece" target="_blank" rel="noopener">Buy now →</a></div></div>
+    </article>
+    <article class="slide" data-slide="3">
+      <div class="s-media"><div class="ph" data-ph="prototype"></div><img data-src="prototype.jpg" alt="Rapid Prototype" /></div>
+      <div class="s-body"><span class="s-num">04 / 04</span><p class="s-cat">B2B · Engineering</p><h3>Rapid<br>Prototype Parts</h3><p>Functional prototyping for engineers and product teams. PLA, PETG, ABS Pro. Upload your STL — we handle the rest.</p><div class="s-foot"><span class="s-price">From £45.00</span><a class="btn btn-primary btn-sm" href="https://shop.uncreations.co.uk/products/rapid-prototype-engineering-part" target="_blank" rel="noopener">Buy now →</a></div></div>
+    </article>
+  </div>
+</section>
+
+<div class="wrap" style="text-align:center;padding:10px 44px 0;"><a href="https://shop.uncreations.co.uk" target="_blank" rel="noopener" class="btn btn-secondary">View the Full Shop ↗</a></div>
+
+<section class="interlude"><div class="q reveal"><p>Every order is a <em>commission</em> — engineered, not pulled off a shelf.</p></div></section>
+
+<!-- ━━ DIVIDER ━━ -->
+<section class="divider" data-num="02"><div class="div-inner"><span class="div-k">The Studio</span><h2 class="div-title">A full<br><em>fabrication</em> studio.</h2><div class="div-rule"></div></div></section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">02</span><span class="label">The Studio · Services</span></div>
+    <div class="svc-grid">
+      <div class="svc reveal d1" onclick="openModal('Automobile Design','Custom 3D-printed automotive parts, interior trims, dashboard elements, mounting brackets and bespoke accessories for enthusiasts and industry.')"><span class="n">01</span><h3>Automobile Design</h3><p>Custom trims, brackets, interior accents and prototypes — precision parts for car enthusiasts and industry.</p><span class="go">Book a consultation →</span></div>
+      <div class="svc reveal d2" onclick="openModal('Interior Design','Architectural scale models, bespoke light fixtures, geometric installations and branded interior elements for commercial and residential spaces.')"><span class="n">02</span><h3>Interior Design</h3><p>Scale models, fixtures, installations and branded elements for commercial and residential spaces.</p><span class="go">Book a consultation →</span></div>
+      <div class="svc reveal d3" onclick="openModal('Home Décor Studio','Fully bespoke home décor — geometric wall art, statement vases, custom lampshades and architectural organisers, manufactured to a finish you would be proud to display.')"><span class="n">03</span><h3>Home Décor Studio</h3><p>Wall art, vases, lampshades and organisers — your vision, manufactured to a display-grade finish.</p><span class="go">Book a consultation →</span></div>
+      <div class="svc reveal d1" onclick="openModal('B2B Branded Merchandise','Corporate branded merchandise, logo displays, trade-show pieces, desk objects and custom packaging — physical branded experiences that last.')"><span class="n">04</span><h3>B2B Branded Merch</h3><p>Logo items, trade-show pieces, office décor and bulk orders for UK companies.</p><span class="go">Book a consultation →</span></div>
+      <div class="svc reveal d2" onclick="openModal('Rapid Prototyping','Functional prototyping, product mockups, tangible interface components and rapid iteration models for designers, startups and innovation teams.')"><span class="n">05</span><h3>Rapid Prototyping</h3><p>Functional prototypes, product mockups and fast iteration for startups and product teams.</p><span class="go">Book a consultation →</span></div>
+      <div class="svc reveal d3" onclick="openModal('Custom Brief','Have something that does not fit a category? We love unconventional briefs. Bring the wildest idea — if it can be engineered, we can probably make it.')"><span class="n">06</span><h3>Something Else?</h3><p>Any industry, any custom brief. If it can be engineered, we can probably make it.</p><span class="go">Tell us your idea →</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ━━ DIVIDER ━━ -->
+<section class="divider" data-num="03"><div class="div-inner"><span class="div-k">For Business</span><h2 class="div-title">Built for<br><em>scale.</em></h2><div class="div-rule"></div></div></section>
+
+<section id="b2b">
+  <div class="wrap">
+    <div class="b2b-card">
+      <div class="reveal">
+        <div class="sec-head"><span class="num">03</span><span class="label">For Business</span></div>
+        <h2 class="sec-title">Branded merch & prototypes, at scale.</h2>
+        <p>From trade-show centrepieces to functional engineering parts, we help UK companies manufacture physical things that carry their brand — quoted fast, made in-house, delivered on time.</p>
+        <a href="#quote" class="btn btn-primary" onclick="setTimeout(function(){var b=document.getElementById('tg-business');if(b)b.click();},420)">Request a B2B Quote</a>
+      </div>
+      <ul class="b2b-points reveal d1"><li>Bulk &amp; repeat-order pricing</li><li>Material guidance — PLA, PETG, ABS Pro, Resin</li><li>Rapid prototyping &amp; short-run production</li><li>Custom packaging &amp; branded finishing</li><li>48-hour rush service available</li><li>Dedicated point of contact</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- ━━ DIVIDER ━━ -->
+<section class="divider" data-num="04"><div class="div-inner"><span class="div-k">Start a Project</span><h2 class="div-title">Tell us what<br>to <em>make.</em></h2><div class="div-rule"></div></div></section>
+
+<section id="quote">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="num">04</span><span class="label">Start a Project · Instant Quote</span></div>
+    <form id="quote-form" class="q-form reveal d2" novalidate>
+      <div class="q-field full"><label>I am a…</label><div class="q-toggle"><button type="button" id="tg-personal" class="on">Personal Customer</button><button type="button" id="tg-business">Business / B2B</button></div></div>
+      <div class="q-field"><label>Your Name *</label><input type="text" name="name" required autocomplete="name" /></div>
+      <div class="q-field"><label>Email *</label><input type="email" name="email" required autocomplete="email" /></div>
+      <div class="q-field biz-only"><label>Company</label><input type="text" name="company" autocomplete="organization" /></div>
+      <div class="q-field biz-only"><label>Industry</label><input type="text" name="industry" placeholder="e.g. Automotive, Events, Retail" /></div>
+      <div class="q-field"><label>Material</label><select name="material"><option value="">Not sure — recommend for me</option><option>PLA</option><option>PETG</option><option>ABS Pro</option><option>Resin Ultra</option><option>Multi-colour</option></select></div>
+      <div class="q-field"><label>Quantity</label><input type="text" name="quantity" placeholder="e.g. 1, 25, 500+" /></div>
+      <div class="q-field"><label>Deadline</label><input type="text" name="deadline" placeholder="e.g. 2 weeks / 48h rush" /></div>
+      <div class="q-field"><label>Budget (optional)</label><input type="text" name="budget" placeholder="e.g. £50–£200" /></div>
+      <div class="q-field full"><label>Project Details *</label><textarea name="projectDetails" required placeholder="What do you want made? Size, colours, reference links — anything helpful."></textarea></div>
+      <div class="q-field full"><label class="q-check"><input type="checkbox" name="nurture" checked /> Email me a 10% welcome discount + design tips (unsubscribe anytime)</label></div>
+      <div class="q-field full"><button type="submit" class="q-submit">Send My Quote Request →</button><p class="q-status" id="quote-status" aria-live="polite"></p></div>
+    </form>
+    <div class="q-trust reveal"><span><b>24h</b> response</span><span><b>Free</b> consultation</span><span><b>UK</b> manufactured</span><span><b>48h</b> rush available</span></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand"><a href="#hero" class="brand"><span class="dot"></span>UN Creations</a><p>Precision 3D-printed gifts, décor and parts. Designed and manufactured in the United Kingdom.</p></div>
+    <div class="foot-col"><h5>Explore</h5><a href="#showcase">The Work</a><a href="#services">Studio Services</a><a href="#b2b">For Business</a><a href="https://shop.uncreations.co.uk" target="_blank" rel="noopener">Store ↗</a></div>
+    <div class="foot-col"><h5>Get 10% Off</h5><form id="nl-form" class="nl-form"><input type="email" name="email" placeholder="your@email.com" required /><button type="submit">Join</button></form><p class="nl-status" id="nl-status" aria-live="polite"></p><a href="mailto:3dprinting@uncreations.co.uk" style="margin-top:16px;">3dprinting@uncreations.co.uk</a></div>
+  </div>
+  <div class="foot-base"><span>© 2026 UN Creations — Manufactured in the UK</span><span>Deep Graphite · Copper · Soft Ivory</span></div>
+</footer>
+
+<div id="modal" class="overlay"><div class="modal-box"><button class="x" onclick="closeModal()">✕</button><p class="eyebrow">Book a Consultation</p><h3 id="modal-title"></h3><p class="m-desc" id="modal-desc"></p>
+  <form id="modal-form" class="q-form" style="grid-template-columns:1fr;gap:16px;margin-top:6px;" novalidate><input type="hidden" name="service" id="modal-service-field" />
+    <div class="q-field"><label>Your Name *</label><input type="text" name="name" required /></div>
+    <div class="q-field"><label>Email *</label><input type="email" name="email" required /></div>
+    <div class="q-field"><label>Your Brief *</label><textarea name="brief" required placeholder="Describe your project…"></textarea></div>
+    <button type="submit" class="q-submit">Send Your Brief →</button><p class="q-status" id="modal-status" aria-live="polite"></p>
+  </form></div></div>
+
+<div id="dpop" class="overlay"><div class="modal-box"><button class="x" onclick="closeDpop()">✕</button><p class="eyebrow">Welcome Gift</p><h3>10% off your first order</h3>
+  <p class="m-desc">Drop your email — we'll send your welcome discount and the occasional piece of design inspiration. No spam, ever.</p>
+  <form id="dpop-form" class="nl-form" style="max-width:100%;"><input type="email" name="email" placeholder="your@email.com" required /><button type="submit">Claim 10% Off</button></form>
+  <div class="dpop-code" id="dpop-code">WELCOME10</div><p class="nl-status" id="dpop-status" aria-live="polite" style="margin-top:10px;"></p>
+</div></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script>
+'use strict';
+/* ━━ AUTOMATION ENGINE — n8n webhooks ━━ */
+const AUTOMATION={N8N_BASE:'https://ums1226.app.n8n.cloud/webhook',PATHS:{lead:'/lead-capture',quote:'/quote-request',nurture:'/nurture',b2b:'/b2b-outreach',score:'/lead-score'},FALLBACK_EMAIL:'3dprinting@uncreations.co.uk'};
+const UTM={};new URLSearchParams(location.search).forEach((v,k)=>{if(k.indexOf('utm_')===0)UTM[k]=v;});
+function isConfigured(){return /^https?:\/\//.test(AUTOMATION.N8N_BASE||'');}
+async function sendToWorkflow(key,payload){if(!isConfigured())throw new Error('not-configured');const base=AUTOMATION.N8N_BASE.replace(/\/+$/,'');const res=await fetch(base+AUTOMATION.PATHS[key],{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(Object.assign({source:'uncreations-website',submittedAt:new Date().toISOString()},UTM,payload))});if(!res.ok)throw new Error('http-'+res.status);return res;}
+function fireAndForget(k,p){sendToWorkflow(k,p).catch(function(){});}
+function mailtoFallback(s,b){location.href='mailto:'+AUTOMATION.FALLBACK_EMAIL+'?subject='+encodeURIComponent(s)+'&body='+encodeURIComponent(b);}
+function setStatus(el,msg,ok){el.textContent=msg;el.className='q-status '+(ok?'ok':'err');}
+
+document.querySelectorAll('img[data-src]').forEach(function(img){var r=new Image();r.onload=function(){img.src=r.src;img.classList.add('loaded');};r.src=img.getAttribute('data-src');});
+var nav=document.getElementById('nav');addEventListener('scroll',function(){nav.classList.toggle('solid',scrollY>innerHeight*0.85);},{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el);});
+
+var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+var hasGsap=(typeof gsap!=='undefined' && typeof ScrollTrigger!=='undefined');
+if(hasGsap)document.documentElement.classList.add('gsap');
+
+/* smooth scroll */
+if(typeof Lenis!=='undefined' && !reduce){try{var lenis=new Lenis({lerp:.1,smoothWheel:true});if(hasGsap){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000);});gsap.ticker.lagSmoothing(0);}else{(function rl(t){lenis.raf(t);requestAnimationFrame(rl);})();}}catch(e){}}
+
+function clamp01(x){return x<0?0:x>1?1:x;}function smooth(e0,e1,x){var t=clamp01((x-e0)/(e1-e0));return t*t*(3-2*t);}function lerp(a,b,t){return a+(b-a)*t;}
+
+/* ══ STICKY "NEXT" DIVIDERS ══ */
+if(hasGsap && !reduce){
+  document.querySelectorAll('.divider').forEach(function(d){
+    var inner=d.querySelector('.div-inner'),title=d.querySelector('.div-title'),k=d.querySelector('.div-k'),rule=d.querySelector('.div-rule');
+    ScrollTrigger.create({trigger:d,start:'top top',end:'bottom bottom',pin:inner,scrub:true,onUpdate:function(s){
+      var p=s.progress;var inP=smooth(0,.4,p),outP=smooth(.62,1,p);var vis=inP*(1-outP);
+      title.style.opacity=vis.toFixed(3);k.style.opacity=vis.toFixed(3);
+      title.style.transform='translateY('+((1-inP)*40-(outP*40))+'px) scale('+lerp(.94,1.04,p)+')';
+      title.style.letterSpacing=lerp(-0.04,-0.01,inP)+'em';
+      if(rule)rule.style.width=(vis*120)+'px';
+    }});
+  });
+}
+
+/* ══ STICKY SHOWCASE ══ */
+(function(){
+  var slides=[].slice.call(document.querySelectorAll('#showcase .slide'));
+  var rail=[].slice.call(document.querySelectorAll('.show-rail b'));
+  if(!slides.length)return;
+  function paint(p){var n=slides.length;var pos=p*(n-1);var act=Math.min(n-1,Math.max(0,Math.round(pos)));
+    slides.forEach(function(s,i){var d=pos-i;var ad=Math.min(1,Math.abs(d));var sd=(d<0?-1:1)*Math.pow(ad,2.4);
+      s.style.opacity=(ad<0.985?'1':'0');s.style.transform='translateX('+(sd*120)+'%)';s.style.pointerEvents=(ad<0.5?'auto':'none');});
+    rail.forEach(function(b,i){b.classList.toggle('on',i===act);});}
+  paint(0);
+  if(hasGsap && !reduce){ScrollTrigger.create({trigger:'#showcase',start:'top top',end:'bottom bottom',pin:'.show-stage',scrub:true,onUpdate:function(s){paint(s.progress);}});}
+})();
+
+/* ══ CINEMATIC 3D HERO — warm, reflective, env-mapped ══ */
+(function(){
+  var hasThree=(typeof THREE!=='undefined');
+  var canvas=document.getElementById('scene');
+  var chaps=[].slice.call(document.querySelectorAll('.chap'));
+  function band(p,a,b){var f=.05;if(p<a-f||p>b+f)return 0;if(p<a)return (p-(a-f))/f;if(p>b)return 1-(p-b)/f;return 1;}
+  var ranges=[[0.02,0.16],[0.24,0.40],[0.50,0.66],[0.78,0.98]];
+  function paintChaps(p){chaps.forEach(function(c,i){var o=band(p,ranges[i][0],ranges[i][1]);c.style.opacity=o.toFixed(3);c.style.transform='translateY('+(-50+(1-o)*4)+'%)';});}
+  paintChaps(0);
+
+  if(reduce || !hasThree){if(canvas)canvas.style.display='none';chaps[0].style.opacity=1;chaps[3].style.opacity=1;chaps[0].style.position='relative';chaps[0].style.top='32vh';chaps[3].style.position='relative';chaps[3].style.transform='none';document.querySelector('.hero-overlay').style.display='flex';document.querySelector('.hero-overlay').style.flexDirection='column';return;}
+
+  var renderer=new THREE.WebGLRenderer({canvas:canvas,antialias:true,alpha:true});
+  renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.localClippingEnabled=true;
+  if(THREE.sRGBEncoding!==undefined)renderer.outputEncoding=THREE.sRGBEncoding;
+  var scene=new THREE.Scene();
+  var camera=new THREE.PerspectiveCamera(42,1,.1,100);camera.position.set(0,1.4,9);
+  function resize(){var w=canvas.clientWidth,h=canvas.clientHeight;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}
+
+  /* warm environment map for premium reflections */
+  try{
+    var ec=document.createElement('canvas');ec.width=512;ec.height=256;var ex=ec.getContext('2d');
+    var lg=ex.createLinearGradient(0,0,0,256);lg.addColorStop(0,'#4a3320');lg.addColorStop(.5,'#23262D');lg.addColorStop(1,'#0c0d10');
+    ex.fillStyle=lg;ex.fillRect(0,0,512,256);
+    var rg=ex.createRadialGradient(370,80,0,370,80,180);rg.addColorStop(0,'#f0b060');rg.addColorStop(.5,'rgba(200,120,60,.4)');rg.addColorStop(1,'rgba(0,0,0,0)');
+    ex.fillStyle=rg;ex.fillRect(0,0,512,256);
+    var etex=new THREE.Texture(ec);etex.mapping=THREE.EquirectangularReflectionMapping;etex.needsUpdate=true;
+    var pmrem=new THREE.PMREMGenerator(renderer);var envMap=pmrem.fromEquirectangular(etex).texture;scene.environment=envMap;etex.dispose();pmrem.dispose();
+  }catch(e){}
+
+  var group=new THREE.Group();group.scale.setScalar(0.92);scene.add(group);
+
+  scene.add(new THREE.AmbientLight(0x4a4640,.5));
+  var key=new THREE.DirectionalLight(0xffd9a8,1.5);key.position.set(5,6,4);scene.add(key);
+  var rim=new THREE.PointLight(0xe7a050,3.0,40);rim.position.set(-5,2,-3);scene.add(rim);
+  var fill=new THREE.DirectionalLight(0x9fb0c0,.35);fill.position.set(-4,-1,5);scene.add(fill);
+
+  var clip=new THREE.Plane(new THREE.Vector3(0,-1,0),-2.2);
+
+  /* HERO OBJECT: hexagonal LED panel (on-brand), polished graphite + copper */
+  var R=1.7,hex=new THREE.Shape();
+  for(var i=0;i<6;i++){var ang=Math.PI/3*i+Math.PI/6;var x=Math.cos(ang)*R,y=Math.sin(ang)*R;if(i===0)hex.moveTo(x,y);else hex.lineTo(x,y);}
+  hex.closePath();
+  var hexGeo=new THREE.ExtrudeGeometry(hex,{depth:.42,bevelEnabled:true,bevelThickness:.07,bevelSize:.07,bevelSegments:2,steps:1});
+  hexGeo.center();
+  var mat=new THREE.MeshStandardMaterial({color:0x2b2f37,metalness:.92,roughness:.28,emissive:new THREE.Color(0xB87333),emissiveIntensity:0,clippingPlanes:[clip],clipShadows:true,side:THREE.DoubleSide});
+  var panel=new THREE.Mesh(hexGeo,mat);panel.rotation.x=-0.32;panel.rotation.y=0.5;group.add(panel);
+
+  /* copper LED inner-edge ring */
+  var ring=new THREE.Mesh(new THREE.TorusGeometry(R*0.74,.035,16,6),new THREE.MeshStandardMaterial({color:0xB87333,metalness:.7,roughness:.3,emissive:new THREE.Color(0xB87333),emissiveIntensity:.2,clippingPlanes:[clip]}));
+  ring.rotation.z=Math.PI/6;ring.position.z=.24;panel.add(ring);
+
+  /* print-head ring (rises with reveal) */
+  var head=new THREE.Mesh(new THREE.TorusGeometry(R+0.1,.02,10,80),new THREE.MeshBasicMaterial({color:0xf0b060}));head.rotation.x=Math.PI/2;group.add(head);
+
+  /* filament thread */
+  var pts=[];for(var t=0;t<=240;t++){var tt=t/240;var a=tt*Math.PI*8;var rr=2.6*(1-tt)+0.1;pts.push(new THREE.Vector3(Math.cos(a)*rr,3.6-tt*5.6,Math.sin(a)*rr));}
+  var tube=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(pts),240,.022,8,false);
+  var thread=new THREE.Mesh(tube,new THREE.MeshBasicMaterial({color:0xf0b060,transparent:true,opacity:.9}));group.add(thread);
+  thread.geometry.setDrawRange(0,0);var threadMax=tube.index?tube.index.count:tube.attributes.position.count;
+
+  /* reflective floor */
+  var floorMat=new THREE.MeshStandardMaterial({color:0x141519,metalness:.9,roughness:.32});
+  var floor=new THREE.Mesh(new THREE.PlaneGeometry(40,40),floorMat);floor.rotation.x=-Math.PI/2;floor.position.y=-2.0;scene.add(floor);
+  /* contact shadow */
+  var sc=document.createElement('canvas');sc.width=sc.height=128;var sx=sc.getContext('2d');var sg=sx.createRadialGradient(64,64,0,64,64,64);sg.addColorStop(0,'rgba(8,8,10,.6)');sg.addColorStop(1,'rgba(8,8,10,0)');sx.fillStyle=sg;sx.fillRect(0,0,128,128);
+  var shadow=new THREE.Mesh(new THREE.PlaneGeometry(6,6),new THREE.MeshBasicMaterial({map:new THREE.CanvasTexture(sc),transparent:true,opacity:.55,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.position.y=-1.98;scene.add(shadow);
+
+  /* warm embers */
+  var pc=(innerWidth<700)?90:200;var pg=new THREE.BufferGeometry();var pa=new Float32Array(pc*3);var pv=[];
+  for(var j=0;j<pc;j++){pa[j*3]=(Math.random()-.5)*10;pa[j*3+1]=(Math.random()-.5)*8;pa[j*3+2]=(Math.random()-.5)*8;pv.push((Math.random()*.4+.1)*0.006);}
+  pg.setAttribute('position',new THREE.BufferAttribute(pa,3));
+  var points=new THREE.Points(pg,new THREE.PointsMaterial({color:0xe7a050,size:.035,transparent:true,opacity:.5,depthWrite:false,blending:THREE.AdditiveBlending}));scene.add(points);
+
+  resize();addEventListener('resize',resize);
+
+  var S={p:0};
+  if(hasGsap){ScrollTrigger.create({trigger:'#hero',start:'top top',end:'bottom bottom',scrub:true,pin:'.stage3d',anticipatePin:1,onUpdate:function(self){S.p=self.progress;}});}
+  else{document.querySelector('.stage3d').style.position='sticky';document.querySelector('.stage3d').style.top='0';addEventListener('scroll',function(){var h=document.getElementById('hero');var r=h.getBoundingClientRect();var total=h.offsetHeight-innerHeight;S.p=Math.min(1,Math.max(0,(-r.top)/total));},{passive:true});}
+
+  var cur={clip:-2.2,emis:0,thread:0};
+  function render(){var p=S.p;paintChaps(p);
+    var tThread=smooth(0.0,0.16,p);var tClip=lerp(-2.2,2.2,smooth(0.14,0.6,p));var tEmis=smooth(0.55,0.9,p)*0.7;
+    cur.thread+=(tThread-cur.thread)*.12;cur.clip+=(tClip-cur.clip)*.12;cur.emis+=(tEmis-cur.emis)*.1;
+    thread.geometry.setDrawRange(0,Math.floor(threadMax*cur.thread));thread.material.opacity=.9*(1-smooth(0.16,0.30,p));
+    clip.constant=cur.clip;head.position.y=Math.max(-2,Math.min(2,cur.clip));head.material.opacity=1-smooth(0.58,0.76,p);head.visible=head.material.opacity>0.02;
+    mat.emissiveIntensity=cur.emis;ring.material.emissiveIntensity=.2+cur.emis*1.2;
+    var a=lerp(-0.6,Math.PI*1.15,smooth(0,1,p));var rad=lerp(9,5.8,smooth(0.1,0.7,p));
+    camera.position.x=Math.sin(a)*rad;camera.position.z=Math.cos(a)*rad;camera.position.y=lerp(2.3,0.9,smooth(0.1,0.8,p));camera.lookAt(0,0,0);
+    group.rotation.y+=0.0014;points.rotation.y-=0.0004;
+    var pos=pg.attributes.position.array;for(var k=0;k<pc;k++){pos[k*3+1]+=pv[k];if(pos[k*3+1]>4)pos[k*3+1]=-4;}pg.attributes.position.needsUpdate=true;
+    renderer.render(scene,camera);requestAnimationFrame(render);}
+  render();
+  if(hasGsap){setTimeout(function(){ScrollTrigger.refresh();},300);window.addEventListener('load',function(){ScrollTrigger.refresh();});}
+})();
+
+/* ── quote form ── */
+(function(){var form=document.getElementById('quote-form');if(!form)return;var tgP=document.getElementById('tg-personal'),tgB=document.getElementById('tg-business'),isBiz=false;
+  function setMode(b){isBiz=b;tgP.classList.toggle('on',!b);tgB.classList.toggle('on',b);form.classList.toggle('is-biz',b);}
+  tgP.addEventListener('click',function(){setMode(false);});tgB.addEventListener('click',function(){setMode(true);});
+  form.addEventListener('submit',async function(e){e.preventDefault();var f=new FormData(form);var name=(f.get('name')||'').trim(),email=(f.get('email')||'').trim(),details=(f.get('projectDetails')||'').trim();var st=document.getElementById('quote-status');
+    if(!name||!email||!details){setStatus(st,'Please fill in name, email and project details.',false);return;}
+    var btn=form.querySelector('.q-submit');btn.disabled=true;setStatus(st,'Sending…',true);
+    var common={name:name,email:email,material:f.get('material')||'',quantity:f.get('quantity')||'',deadline:f.get('deadline')||'',budget:f.get('budget')||'',projectDetails:details,customerType:isBiz?'business':'personal'};
+    try{if(isBiz){await sendToWorkflow('quote',{clientName:name,email:email,projectDetails:details,material:common.material,quantity:common.quantity,deadline:common.deadline,company:f.get('company')||'',industry:f.get('industry')||'',budget:common.budget});fireAndForget('b2b',{contactName:name,email:email,company:f.get('company')||'',productInterest:details.slice(0,200)});}else{await sendToWorkflow('lead',common);}
+      fireAndForget('score',{name:name,company:f.get('company')||'',email:email,industry:f.get('industry')||(isBiz?'B2B':'Consumer'),source:'website-quote'});
+      if(f.get('nurture'))fireAndForget('nurture',{email:email,name:name});
+      form.reset();setMode(isBiz);setStatus(st,"✓ Sent! Check your inbox — we'll reply within 24 hours.",true);
+    }catch(err){setStatus(st,'Opening your email app instead…',true);mailtoFallback((isBiz?'B2B ':'')+'Quote Request — '+name,'Name: '+name+'\nEmail: '+email+(isBiz?'\nCompany: '+(f.get('company')||''):'')+'\nMaterial: '+common.material+'\nQuantity: '+common.quantity+'\nDeadline: '+common.deadline+'\nBudget: '+common.budget+'\n\nProject details:\n'+details);}finally{btn.disabled=false;}});
+})();
+
+/* ── modal ── */
+function openModal(s,d){document.getElementById('modal-title').textContent=s;document.getElementById('modal-desc').textContent=d;document.getElementById('modal-service-field').value=s;document.getElementById('modal').classList.add('open');document.body.style.overflow='hidden';}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+window.openModal=openModal;window.closeModal=closeModal;
+document.getElementById('modal').addEventListener('click',function(e){if(e.target===this)closeModal();});
+(function(){var mf=document.getElementById('modal-form');if(!mf)return;mf.addEventListener('submit',async function(e){e.preventDefault();var f=new FormData(mf);var name=(f.get('name')||'').trim(),email=(f.get('email')||'').trim(),brief=(f.get('brief')||'').trim(),svc=f.get('service')||'Consultation';var st=document.getElementById('modal-status');
+  if(!name||!email||!brief){setStatus(st,'Please complete all fields.',false);return;}var btn=mf.querySelector('.q-submit');btn.disabled=true;setStatus(st,'Sending…',true);
+  try{await sendToWorkflow('lead',{name:name,email:email,projectDetails:'['+svc+'] '+brief,customerType:'consultation',service:svc});fireAndForget('score',{name:name,email:email,company:'',industry:svc,source:'website-consultation'});mf.reset();setStatus(st,"✓ Brief received — we'll reply within 24 hours.",true);}catch(err){setStatus(st,'Opening your email app instead…',true);mailtoFallback(svc+' — Consultation Request','Name: '+name+'\nEmail: '+email+'\nService: '+svc+'\n\nBrief:\n'+brief);}finally{btn.disabled=false;}});})();
+
+/* ── newsletter + popup ── */
+function handleNurture(formId,statusId,after){var form=document.getElementById(formId);if(!form)return;form.addEventListener('submit',function(e){e.preventDefault();var email=(new FormData(form).get('email')||'').trim();if(!email)return;fireAndForget('nurture',{email:email,name:''});fireAndForget('score',{name:'',company:'',email:email,industry:'Consumer',source:'website-newsletter'});form.style.display='none';document.getElementById(statusId).textContent='✓ You are in! Use code WELCOME10 at checkout today.';if(after)after();try{localStorage.setItem('unc_subscribed','1');}catch(_){}});}
+handleNurture('nl-form','nl-status');
+handleNurture('dpop-form','dpop-status',function(){document.getElementById('dpop-code').style.display='inline-block';});
+function closeDpop(){document.getElementById('dpop').classList.remove('open');try{localStorage.setItem('unc_dpop_seen',String(Date.now()));}catch(_){}}
+window.closeDpop=closeDpop;
+document.getElementById('dpop').addEventListener('click',function(e){if(e.target===this)closeDpop();});
+(function(){var seen=0,sub=null;try{seen=parseInt(localStorage.getItem('unc_dpop_seen')||'0',10);sub=localStorage.getItem('unc_subscribed');}catch(_){}if(sub||(seen&&Date.now()-seen<6048e5))return;var shown=false;function show(){if(shown)return;shown=true;document.getElementById('dpop').classList.add('open');}var heroEl=document.getElementById('hero');function pastHero(){return scrollY>(heroEl?heroEl.offsetHeight*0.98:innerHeight*4);}function maybe(){if(pastHero()){show();removeEventListener('scroll',maybe);}}addEventListener('scroll',maybe,{passive:true});setTimeout(function(){if(pastHero())show();},50000);})();
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeModal();closeDpop();}});
+</script>
+</body>
+</html>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
